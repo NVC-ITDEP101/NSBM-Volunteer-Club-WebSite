@@ -1,0 +1,375 @@
+<html>
+    <head>
+        <style>
+             * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            }
+
+            body {
+                font-family: Raleway;
+                background-color:#c9c9c9;
+                
+            }
+            .section1{
+                background: black;
+            }
+            header{
+                background-color: black;
+            }
+
+            nav {
+                display: flex;
+                height: 80px;
+                justify-content: center;
+                align-items: center;
+                padding: 0 20px;
+                position: fixed;
+                left: 0;
+                right: 0;
+                width: 100%;
+                margin: 0 auto;
+                top: 0;
+                background-color: rgba(0, 0, 0, 0.6);
+                z-index: 9;
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255,255,255,.06);
+                transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1) .2s;
+
+            
+            }
+             .logo1{
+                position: absolute;
+                left: 18px;
+                
+                width: 210px;
+                height: 80px;
+            }
+            a{
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 15px 20px;
+                line-height: 1;
+                font-size: 13px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                
+
+            }
+                a:hover {
+                    border-bottom: 2px solid white;
+                    color: rgb(171, 171, 171);
+                }
+                        
+
+            header {
+                z-index: 99999;
+                position: relative;
+            }
+  
+    #about-brand {
+    padding: 100px 10%;
+    background-color: #ffffff;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: auto;
+}
+
+/* Text Styling */
+.about-text {
+    flex: 1.2;
+}
+
+.about-text h2 {
+    font-size: 24px;
+    line-height: 1.4;
+    color: #222;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    max-width: 500px; /* Limits width to match the screenshot look */
+}
+
+/* Image & Hover Effect */
+.about-image-wrapper {
+    flex: 1;
+    overflow: hidden;
+}
+
+.responsive-about-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* This makes it black and white initially */
+    filter: grayscale(100%);
+    transition: filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s ease;
+    cursor: pointer;
+}
+
+/* The "Response" - Transform to Color and slight zoom */
+.about-image-wrapper:hover .responsive-about-img {
+    filter: grayscale(0%);
+    transform: scale(1.03); /* Subtle zoom effect */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .about-container {
+        flex-direction: column;
+        gap: 40px;
+        height: 70%;
+
+        text-align: center;
+    }
+    p{
+        position: relative;
+        text-align: center;
+    }
+    
+    .about-text h2 {
+        font-size: 23px;
+    }
+    .about-text p {
+        font-size: 16px;
+        max-width: 100%;
+       
+    }
+}
+
+
+
+
+/* Footer Styling */
+            .main-footer {
+                background: linear-gradient(black , rgb(0, 44, 62) );
+                color: #ffffff;
+                padding: 60px 10% 20px 10%;
+                margin-top: 50px;
+            }
+
+            .footer-container {
+                display: flex;
+                justify-content: space-between;
+                gap: 40px;
+                flex-wrap: wrap;
+            }
+
+            .footer-col {
+                flex: 1;
+                min-width: 150px;
+            }
+
+            .footer-col h3 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                color: #007bff; /* Accent color */
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .footer-col p {
+                color: #b3b3b3;
+                line-height: 1.8;
+                font-size: 0.95rem;
+            }
+
+            .footer-links {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-links li {
+                margin-bottom: 12px;
+            }
+
+            .footer-links a {
+                color: #b3b3b3;
+                text-decoration: none;
+                transition: 0.3s;
+                font-size: 0.95rem;
+                padding: 0; /* Removing padding from previous 'a' styles */
+                display: inline;
+            }
+
+            .footer-links a:hover {
+                color: #ffffff;
+                border-bottom: 1px solid #ffffff;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .footer-bottom p {
+                font-size: 0.8rem;
+                color: #777;
+            }
+            .f-links{
+                margin: 3px;
+            }
+            /* Responsive Footer */
+            @media (max-width: 768px) {
+                .footer-container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .footer-col {
+                    margin-bottom: 30px;
+                }
+                .main-footer{
+                    height: 90%;
+                    position: sticky;
+                    bottom: 0;
+                }
+               
+            }
+            h3{
+                color: #ffffff;
+            }
+
+
+
+
+
+
+
+
+
+
+
+       
+        </style>
+    </head>
+    <body>
+
+        <section class="section1">
+        <header>
+           
+             <nav>
+               <a href="index.html">home</a>
+                <a href="Gallery.html">gallery</a>
+                <a href="About.html">about</a>
+                <img src="img/Merry Christmas (5).png" class="logo1">     
+            </nav>
+  </section>      
+  <br>
+  <br>
+  <br>
+  <br>  
+      <section id="about-brand" class="reveal-section">
+        <div class="about-container">
+        <div class="about-text">
+            <h2>NSBM VOLUNTEER CLUB MAKES AN IMPACT WITH A COMMITMENT TO SERVICE, QUALITY, AND OUR COMMUNITY ROOTS.</h2>
+            <p>
+                Founded with a vision to serve, we started as a small group of students with a simple goal: to create a platform for change that stands the test of time.
+            </p>
+            <p>
+                From the start, we've remained committed to quality leadership, combining traditional values with modern energy to create community projects that matter.
+            </p>
+            <p>
+                Each project in our journey has a little bit of us infused in it; a laidback, effortless spirit that feels as good as it looks. We call it the spirit of service.
+            </p>
+        </div>
+
+        <div class="about-image-wrapper">
+            <img src="img/481976109_622933643939482_2955202123301983749_n.jpg" alt="NSBM Roots" class="responsive-about-img">
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>NSBM Volunteer Club</h3>
+            <p>Empowering the youth to serve the community through dedication, passion, and selfless action. Join us in making the world a better place, one project at a time.</p>
+            <div class="footer-logo">
+                </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="About.html">About</a></li>
+                
+            </ul>
+           
+        </div>
+        <div class="footer-col">
+            <h3>Follow Us</h3>
+            <ul class="footer-links">
+                
+                <a class="f-links" href=""><img style="width: 30px;" src="instagram_174855.png" alt=""></a>
+                <a class="f-links" href=""><img style="width: 30px;" src="tik-tok_3046121.png" alt=""></a>
+                <a class="f-links" href=""><img style="width: 30px;" src="connection_15047316.png" alt=""></a>
+                <a class="f-links" href=""><img style="width: 30px;" src="facebook.png" alt=""></a>
+               
+            </ul>
+        </div>
+
+         <div class="footer-col">
+            <h3>Contact Us</h3>
+            <ul class="footer-links">
+                
+                <li><h5>✉︎ info@nsbmvolunteersclub.org </h5></li>
+                <li><h5>➤NSBM Volunteer Club,
+                    2nd Floor Student Center,
+                    NSBM Green University,
+                    Pitipana, Homagama,
+                    Sri Lanka.</h5> </li>
+               
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 NSBM Volunteer Club. All Rights Reserved.</p>
+        
+    </div>
+</footer>
+<script>
+    const applyfooterMobileFixes = () => {
+    const isMobile = window.innerWidth <= 768;
+    
+    // Select Section 3 elements
+    const fot = document.querySelector('.main-footer');
+    
+    
+    if (isMobile) {
+        // 1. Fix Trapezium Background (Right side)
+        if (fot) {
+            fot.style.width = '100%';
+            fot.style.height = '100%';
+            fot.style.bottom = '0%';
+            fot.style.position = 'static';
+           
+        }
+
+       
+    } 
+};
+
+// Run on load and resize
+window.addEventListener('resize', applySection3MobileFixes);
+applySection4MobileFixes();
+</script>
+    </body>
+</html>

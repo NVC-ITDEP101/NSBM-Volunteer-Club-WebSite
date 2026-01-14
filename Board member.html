@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Member </title>
+    <style>
+        /* 1. Global Page Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: rgb(15, 15, 15);
+            background-image: radial-gradient(circle at top right, #003a44, transparent),
+                              radial-gradient(circle at bottom left, #000, transparent);
+            color: #eee;
+            padding: 80px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 90px;
+            color: #000000;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* 2. Responsive Grid System (3 columns desktop, 1 column mobile) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 950px;
+            margin: 0 auto ;
+        }
+
+        /* 3. The Glassmorphism Card */
+        .member-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            width: 260px;
+            text-align: center;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.12, 1.275);
+        }
+
+        /* 4. Pop-up Animation on Hover */
+        .member-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 5. Shining Light Effect */
+        .member-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: skewX(-25deg);
+            transition: 0.7s;
+        }
+
+        .member-card:hover::before {
+            left: 150%;
+        }
+
+        /* 6. Card Internal Styling */
+        .member-img {
+            width: 80%;
+            height: 310px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 5px 0;
+            color: #fff;
+        }
+
+        .member-position {
+            font-size: 0.75rem;
+            color: #00b6da;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* 7. Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 650px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 40px;
+                
+            align-items: center;}
+            .member-card {
+               align-items: center;
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+        @media (max-width: 768px) {
+    .member-card:has(.member-position:contains("President")) {
+        order: 1;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <h1>Board Members</h1>
+    <br>
+    <br>
+    <br>
+    <div class="gallery-grid" id="memberGrid">
+        </div>
+
+    <script>
+        // --- DATA INSERTION SECTION ---
+        // Just add your 45 members into this list:
+        const memberData = [
+            { name: "Shehan Kavinda", position: "President", image: "member2.jpg" },
+            { name: "Sathira Ruston", position: "Vice President", image: "mber/IMG_8827.jpg" },
+            { name: "Lakmi Pabodani", position: "Vice President", image: "mber/IMG_8677.jpg" },
+            { name: "Hashini Pabasara", position: "Secretary", image: "mber/IMG_8715.jpg" },
+            { name: "Pasindu Piyumika", position: "Assistant Secretary", image: "mber/IMG_8757.jpg" },
+            { name: "Lahini Jayathilake", position: "Assistant Secretary", image: "mber/IMG_8748.jpg" },
+            { name: "Sewwandi Sapna", position: "Treasurer", image: "mber/IMG_8738.jpg" },
+            { name: "Pubudu Akalanka", position: "Assistant Treasurer", image: "mber/IMG_8726.jpg" },
+            { name: "Heshani Lankarathna", position: "Assistant Treasurer", image: "mber/IMG_8791.jpg" }, 
+            { name: "Abisheka Gamage", position: "Head of Coordination", image: "mber/IMG_8840.jpg" },
+            { name: "Pubudu Chandima", position: "Editor", image: "mber/IMG_8705.jpg" },
+            { name: "Desandu Hasnaka", position: "Assistant Editor", image: "mber/IMG_8764.jpg" },
+            { name: "Vinushi Fernando", position: "Faculty Coordinator(FOB)", image: "mber/IMG_8793.jpg" },
+            { name: "Pasan Perera", position: "Faculty Coordinator(FOB)", image: "mber/.jpg" },
+            { name: "Adithya Nimnadi", position: "Faculty Coordinator(FOC)", image: "mber/IMG_8798.jpg" },
+            { name: "Venura Sasmika", position: "Faculty Coordinator(FOC)", image: "mber/IMG_8806.jpg" },
+            { name: "Navanya Wathmavie", position: "Faculty Coordinator(FOS & FOE)", image: "mber/IMG_8811.jpg" },
+            { name: "Sithmini Abeysinghe", position: "Faculty Coordinator(FOS & FOE)", image: "mber/.jpg" },
+            { name: "Supuni Rathnamalala", position: "Executive Member", image: "mber/IMG_8816.jpg" },
+            { name: "Nethmini Nitheeksha", position: "Executive Member", image: "mber/IMG_8819.jpg" },
+            { name: "Vidara Jayasinghe", position: "Executive Member", image: "mber/IMG_8742.jpg" },
+            { name: "Dismi Alwis", position: "executive member", image: "mber/IMG_8802.jpg" },
+            { name: "Gagan Hansaka", position: "exeutive member", image: "mber/IMG_8723.jpg" },
+            { name: "Kavindya Anjali", position: "Executive Member", image: "mber/IMG_8828.jpg" },
+            { name: "Nimsara Subahasinghe", position: "executive member", image: "mber/IMG_8835.jpg" },
+            { name: "Shehan Nirmana", position: "executive member", image: "mber/IMG_8735.jpg" },
+            { name: "Anjana Semasinghe", position: "executive member", image: "mber/IMG_8702.jpg" },
+            { name: "Shayana Hennedige", position: "executive member", image: "mber/IMG_8698.jpg" },
+            { name: "Kavishka Dasanayake", position: "executive member", image: "mber/IMG_8744.jpg" },
+            { name: "Sasiru Wanigathunga", position: "executive member", image: "mber/IMG_8710.jpg" },
+            { name: "Pasan Akalanka", position: "executive member", image: "mber/IMG_8731.jpg" },
+            { name: "Adithya Weerakoon", position: "executive member", image: "mber/IMG_8690.jpg" },
+            { name: "Chathushka Ravishan", position: "executive member", image: "mber/IMG_8789.jpg" },
+            { name: "Tharushika Dilmin", position: "executive member", image: "mber/IMG_8759.jpg" },
+            { name: "Nevandi Thenuwara", position: "executive member", image: "mber/IMG_8712.jpg" },
+            { name: "Duvindu Piyumika", position: "executive member", image: "mber/IMG_8693.jpg" },
+            { name: "Nimesha Hewage", position: "executive member", image: "mber/IMG_8786.jpg" }
+            
+            
+           
+            // Add the rest of your members here...
+        ];
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const grid = document.getElementById('memberGrid');
+
+        // This loop automatically creates the HTML for you
+        memberData.forEach(member => {
+            const card = document.createElement('div');
+            card.className = 'member-card';
+            
+            card.innerHTML = `
+                <img src="${member.image}" class="member-img" alt="${member.name}">
+                <div class="member-name">${member.name}</div>
+                <div class="member-position">${member.position}</div>
+            `;
+            
+            grid.appendChild(card);
+        });
+
+        // Optional: If you haven't finished the list yet, 
+        // this fills the rest up to 45 with placeholders:
+        for (let i = memberData.length + 1; i <= 37; i++) {
+            const card = document.createElement('div');
+            card.className = 'member-card';
+            card.innerHTML = `
+                <img src="https://via.placeholder.com/300x280/1a1a1a/00d4ff?text=Upload+Photo" class="member-img">
+                <div class="member-name">Member ${i}</div>
+                <div class="member-position">Volunteer</div>
+            `;
+            grid.appendChild(card);
+        }
+    </script>
+
+</body>
+</html>
