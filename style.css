@@ -166,8 +166,8 @@
             }
              @media (max-width: 768px) {
                .logo1{
-                width: 63px;
-                height: 39px;
+                width: 67px;
+                height: 33px;
                 left:0;
                }
             }
@@ -881,4 +881,5 @@
             }
             h3{
                 color: #ffffff;
+
             }
