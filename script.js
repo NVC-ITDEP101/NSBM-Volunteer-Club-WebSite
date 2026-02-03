@@ -246,6 +246,46 @@ if (sectionX) {
 
 
 
+//section 4 news and updates 
+async function loadNews() {
+    const newsList = document.getElementById('news-list');
+
+    const { data: news, error } = await _supabase
+        .from('news')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error("Error loading news:", error);
+        return;
+    }
+
+    // Clear the container
+    newsList.innerHTML = '';
+
+    // Create a card for each news item
+    news.forEach(item => {
+        const card = `
+            <article class="news-card">
+                <img src="${item.image_url}" alt="${item.title}">
+                <div class="news-content">
+                    <p class="news-date">${item.date}</p>
+                    <h4>${item.title}</h4>
+                    <p>${item.description}</p>
+                </div>
+            </article>
+        `;
+        newsList.innerHTML += card;
+    });
+}
+
+// Call the function
+loadNews();
+
+
+
+
+
 
 
 
@@ -563,4 +603,5 @@ const applySection4MobileFixes = () => {
 
 // Run on load and resize
 window.addEventListener('resize', applySection3MobileFixes);
+
 applySection4MobileFixes();
