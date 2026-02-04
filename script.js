@@ -246,9 +246,16 @@ if (sectionX) {
 
 
 
+
+
+
+
+
 //section 4 news and updates 
+// Function to display news in Section 4 Grid
 async function loadNews() {
-    const newsList = document.getElementById('news-list');
+    const newsList = document.getElementById('news-list'); // Ensure this ID is in Section 4 of index-copy.html
+    if(!newsList) return;
 
     const { data: news, error } = await _supabase
         .from('news')
@@ -260,10 +267,8 @@ async function loadNews() {
         return;
     }
 
-    // Clear the container
-    newsList.innerHTML = '';
+    newsList.innerHTML = ''; // Clear existing static cards
 
-    // Create a card for each news item
     news.forEach(item => {
         const card = `
             <article class="news-card">
@@ -277,11 +282,21 @@ async function loadNews() {
         `;
         newsList.innerHTML += card;
     });
+
+    // Re-apply hover effects to new dynamic cards
+    applyCardEffects();
 }
 
-// Call the function
-loadNews();
+function applyCardEffects() {
+    document.querySelectorAll('.news-card').forEach((card) => {
+        card.onmouseover = () => card.style.transform = "scale(1.1) translateY(-10px)";
+        card.onmouseout = () => card.style.transform = "scale(1) translateY(0)";
+    });
+}
 
+// Ensure Supabase is initialized in script.js as well
+const _supabase = supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+loadNews();
 
 
 
@@ -605,3 +620,4 @@ const applySection4MobileFixes = () => {
 window.addEventListener('resize', applySection3MobileFixes);
 
 applySection4MobileFixes();
+
