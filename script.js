@@ -251,7 +251,6 @@ if (sectionX) {
 
 
 
-
 //section 4 news and updates 
 // --- Supabase Configuration ---
 const SUPABASE_URL = 'https://lgbgobzasuqozdkvxifk.supabase.co';
@@ -634,6 +633,3 @@ const applySection4MobileFixes = () => {
 window.addEventListener('resize', applySection3MobileFixes);
 
 applySection4MobileFixes();
-
-
-
