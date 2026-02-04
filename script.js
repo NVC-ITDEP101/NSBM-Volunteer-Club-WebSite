@@ -251,16 +251,17 @@ if (sectionX) {
 
 
 
+
 //section 4 news and updates 
 // --- Supabase Configuration ---
 const SUPABASE_URL = 'https://lgbgobzasuqozdkvxifk.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnYmdvYnphc3Vxb3pka3Z4aWZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0ODg3OTcsImV4cCI6MjA4NDA2NDc5N30.a64sYwLUfGd1qNqg9Vfon_DqvrntkMiB1v-l6tPoITM';
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// --- Section 4: Dynamic News Grid ---
+
+// --- Section 4: News Grid Display ---
 async function loadNews() {
-    // Note: Ensure index-copy.html has <div class="news-grid" id="news-list">
-    const newsList = document.getElementById('news-list') || document.querySelector('#section4 .news-grid');
+    const newsList = document.getElementById('news-list');
     if (!newsList) return;
 
     const { data: news, error } = await _supabase
@@ -276,10 +277,10 @@ async function loadNews() {
     newsList.innerHTML = ''; // Clear static content
 
     news.forEach(item => {
-        const card = document.createElement('article');
-        card.className = 'news-card';
-        card.style.cursor = 'pointer';
-        card.innerHTML = `
+        const article = document.createElement('article');
+        article.className = 'news-card';
+        article.style.cursor = 'pointer';
+        article.innerHTML = `
             <div class="news-img">
                 <img src="${item.image_url}" alt="${item.title}">
                 <span class="news-date">${item.date}</span>
@@ -290,30 +291,25 @@ async function loadNews() {
             </div>
         `;
 
-        // Re-attach the Modal Click Event to the new dynamic card
-        card.addEventListener('click', () => {
+        // Open Modal Event
+        article.onclick = () => {
             const modal = document.getElementById("newsModal");
             document.getElementById('modalImg').src = item.image_url;
             document.getElementById('modalDate').innerText = item.date;
             document.getElementById('modalTitle').innerText = item.title;
             document.getElementById('modalDescription').innerText = item.description;
-            
             modal.style.display = "block";
             document.body.style.overflow = "hidden";
-        });
-
-        // Re-attach Hover Effects
-        card.onmouseover = () => card.style.transform = "scale(1.1) translateY(-10px)";
-        card.onmouseout = () => {
-            card.style.transform = "scale(1) translateY(0)";
-            card.style.transition = "transform 0.3s ease";
         };
 
-        newsList.appendChild(card);
+        // Hover Effect
+        article.onmouseover = () => article.style.transform = "scale(1.1) translateY(-10px)";
+        article.onmouseout = () => article.style.transform = "scale(1) translateY(0)";
+
+        newsList.appendChild(article);
     });
 }
 
-// Call function to load news from Supabase
 loadNews();
 
 
@@ -638,5 +634,6 @@ const applySection4MobileFixes = () => {
 window.addEventListener('resize', applySection3MobileFixes);
 
 applySection4MobileFixes();
+
 
 
