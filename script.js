@@ -252,10 +252,16 @@ if (sectionX) {
 
 
 //section 4 news and updates 
-// Function to display news in Section 4 Grid
+// --- Supabase Configuration ---
+const SUPABASE_URL = 'https://lgbgobzasuqozdkvxifk.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnYmdvYnphc3Vxb3pka3Z4aWZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0ODg3OTcsImV4cCI6MjA4NDA2NDc5N30.a64sYwLUfGd1qNqg9Vfon_DqvrntkMiB1v-l6tPoITM';
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// --- Section 4: Dynamic News Grid ---
 async function loadNews() {
-    const newsList = document.getElementById('news-list'); // Ensure this ID is in Section 4 of index-copy.html
-    if(!newsList) return;
+    // Note: Ensure index-copy.html has <div class="news-grid" id="news-list">
+    const newsList = document.getElementById('news-list') || document.querySelector('#section4 .news-grid');
+    if (!newsList) return;
 
     const { data: news, error } = await _supabase
         .from('news')
@@ -267,35 +273,47 @@ async function loadNews() {
         return;
     }
 
-    newsList.innerHTML = ''; // Clear existing static cards
+    newsList.innerHTML = ''; // Clear static content
 
     news.forEach(item => {
-        const card = `
-            <article class="news-card">
+        const card = document.createElement('article');
+        card.className = 'news-card';
+        card.style.cursor = 'pointer';
+        card.innerHTML = `
+            <div class="news-img">
                 <img src="${item.image_url}" alt="${item.title}">
-                <div class="news-content">
-                    <p class="news-date">${item.date}</p>
-                    <h4>${item.title}</h4>
-                    <p>${item.description}</p>
-                </div>
-            </article>
+                <span class="news-date">${item.date}</span>
+            </div>
+            <div class="news-content">
+                <h4>${item.title}</h4>
+                <p>${item.description}</p>
+            </div>
         `;
-        newsList.innerHTML += card;
-    });
 
-    // Re-apply hover effects to new dynamic cards
-    applyCardEffects();
-}
+        // Re-attach the Modal Click Event to the new dynamic card
+        card.addEventListener('click', () => {
+            const modal = document.getElementById("newsModal");
+            document.getElementById('modalImg').src = item.image_url;
+            document.getElementById('modalDate').innerText = item.date;
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalDescription').innerText = item.description;
+            
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        });
 
-function applyCardEffects() {
-    document.querySelectorAll('.news-card').forEach((card) => {
+        // Re-attach Hover Effects
         card.onmouseover = () => card.style.transform = "scale(1.1) translateY(-10px)";
-        card.onmouseout = () => card.style.transform = "scale(1) translateY(0)";
+        card.onmouseout = () => {
+            card.style.transform = "scale(1) translateY(0)";
+            card.style.transition = "transform 0.3s ease";
+        };
+
+        newsList.appendChild(card);
     });
 }
 
-// Ensure Supabase is initialized in script.js as well
-const _supabase = supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+// Call function to load news from Supabase
 loadNews();
 
 
@@ -620,4 +638,5 @@ const applySection4MobileFixes = () => {
 window.addEventListener('resize', applySection3MobileFixes);
 
 applySection4MobileFixes();
+
 
