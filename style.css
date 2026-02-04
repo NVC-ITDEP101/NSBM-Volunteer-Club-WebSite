@@ -1,10 +1,10 @@
   /* General Reset */
         
- body {
+body {
     line-height: 1.6;
      font-family: 'Inter', 'DIN', 'Arial', sans-serif;
    
-     background: url(kevin-bosc-4e9eeHdiBi0-unsplash.jpg)  no-repeat center center fixed ;
+     background: url(img/kevin-bosc-4e9eeHdiBi0-unsplash.jpg)  no-repeat center center fixed ;
      background-size: cover;
     
     font-size: 18px;
@@ -23,7 +23,7 @@
 }
  @media (max-width: 768px) {
     body{
-        background: url(hhhh.jpg)  no-repeat center center fixed ;
+        background: url(img/hhhh.jpg)  no-repeat center center fixed ;
         background-size: cover;
     }
     main-content {
@@ -32,6 +32,8 @@
    
     
  }
+
+
 
 
             /* --- Preloader Specific Styles --- */
@@ -1407,3 +1409,4 @@
             h3{
                 color: #ffffff;
             }
+
