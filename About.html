@@ -174,7 +174,7 @@
     .about-container {
         flex-direction: column;
         gap: 40px;
-        height: au;
+        height: auto;
         margin: 0 auto;
 
         text-align: center;
@@ -201,6 +201,214 @@
     
     
 }
+
+
+
+
+
+
+
+/* Container Positioning */
+.past-board-container {
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+    z-index: 100;
+}
+
+/* Wrapper pointing UP (270deg) */
+.arrow-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: rotate(270deg);
+    cursor: pointer;
+}
+
+/* Phrase flipped 180deg to be readable, placed "in front" of arrow */
+.phrase {
+    display: inline-block;
+    transform: rotate(90deg);
+    color: #000000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    letter-spacing: 3px;
+   
+    margin-top: 20px; /* Space between arrow and text */
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(231, 231, 231, 0.6);
+    
+    animation: arrtophrse 2s infinite;
+    
+}
+
+/* Arrow Styling */
+.arrow span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-bottom: 3px solid #000000;
+    border-right: 3px solid #000000;
+    transform: rotate(45deg);
+    margin: -5px;
+    animation: arrowToPhrase 2s infinite;
+    
+}
+
+.arrow span:nth-child(2) { animation-delay: -0.2s; }
+.arrow span:nth-child(3) { animation-delay: -0.4s; }
+.phrase:nth-child(2) { animation-delay: -0.1s; }
+.phrase:nth-child(3) { animation-delay: -0.3s; }
+
+
+
+/* Animation that moves TOWARD the phrase */
+@keyframes arrowToPhrase {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-10px, -10px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        /* Positive translation moves it toward the text in this flex layout */
+        transform: rotate(45deg) translate(15px, 15px);
+    }
+}
+@keyframes arrtophrse {
+    0% {
+        opacity: 0;
+        transform: rotate(90deg) translate(50px, 0px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(90deg) translate(80px, 0px);
+    }
+}
+
+/* Mobile Responsive: Center at bottom */
+@media (max-width: 768px) {
+    .past-board-container {
+        left: 13%;
+        position: static;
+        transform: translateX(-50%);
+        bottom: 0%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- MODAL WITH SCROLL --- */
+.board-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Dark transparent */
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    /* Uses block display to allow internal scrolling */
+    overflow-y: auto; 
+}
+
+/* Container to center content while allowing scroll */
+.modal-scroll-area {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Start at top so user can scroll down */
+    min-height: 100%;
+    padding: 80px 20px; /* Space for the close button and bottom padding */
+}
+
+.modal-content {
+    text-align: center;
+    width: 90%;
+    max-width: 1100px;
+}
+
+.board-img {
+    width: 100%;
+    height: auto; /* Maintains aspect ratio */
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+}
+
+.board-title {
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 10px;
+    text-shadow: 0 0 10px #00d4ff;
+}
+
+/* Close Button - Fixed so it doesn't scroll away */
+.close-btn {
+    position: fixed;
+    top: 60px;
+    right: 40px;
+    color: #fff;
+    font-size: 60px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001; /* Above the scroll area */
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .close-btn {
+        top: 30px;
+        right: 13px;
+        font-size: 45px;
+    }
+    .board-title {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -336,23 +544,55 @@
   <br>  
       <section id="about-brand" class="reveal-section" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
         <div class="about-container">
-        <div class="about-text">
-            <h2>NSBM VOLUNTEER CLUB MAKES AN IMPACT WITH A COMMITMENT TO SERVICE, QUALITY, AND OUR COMMUNITY ROOTS.</h2>
-            <p>
-                Founded with a vision to serve, we started as a small group of students with a simple goal: to create a platform for change that stands the test of time.
-            </p>
-            <p>
-                From the start, we've remained committed to quality leadership, combining traditional values with modern energy to create community projects that matter.
-            </p>
-            <p>
-                Each project in our journey has a little bit of us infused in it; a laidback, effortless spirit that feels as good as it looks. We call it the spirit of service.
-            </p>
-        </div>
+            <div class="about-text">
+                <h2>NSBM VOLUNTEER CLUB MAKES AN IMPACT WITH A COMMITMENT TO SERVICE, QUALITY, AND OUR COMMUNITY ROOTS.</h2>
+                <p>
+                    Founded with a vision to serve, we started as a small group of students with a simple goal: to create a platform for change that stands the test of time.
+                </p>
+                <p>
+                    From the start, we've remained committed to quality leadership, combining traditional values with modern energy to create community projects that matter.
+                </p>
+                <p>
+                    Each project in our journey has a little bit of us infused in it; a laidback, effortless spirit that feels as good as it looks. We call it the spirit of service.
+                </p>
+            </div>
 
-        <div class="about-image-wrapper">
-            <img src="img/481976109_622933643939482_2955202123301983749_n.jpg" alt="NSBM Roots" class="responsive-about-img">
+            <div class="about-image-wrapper">
+                <img src="img/481976109_622933643939482_2955202123301983749_n.jpg" alt="NSBM Roots" class="responsive-about-img">
+            </div>
+       
+            <div class="past-board-container">
+    <div class="arrow-wrapper" onclick="openboard()">
+        <div class="arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <span class="phrase">PAST BOARD</span>
+    </div>
+</div>
+
+<div id="boardOverlay" class="board-modal">
+    <span class="close-btn" onclick="closeBoard()">&times;</span>
+    
+    <div class="modal-scroll-area">
+        <div class="modal-content">
+            <img src="img/481976109_622933643939482_2955202123301983749_n.jpg" alt="Past Board" class="board-img">
+            <h2 class="board-title">2024/2025 EXECUTIVE BOARD</h2>
+            <img src="img/IMG-20250519-WA0012.jpg" alt="Past Board" class="board-img">
+            <h2 class="board-title">2024/2025 EXECUTIVE BOARD</h2>
+            <img src="img/IMG_5450.JPG" alt="Past Board" class="board-img">
+            <h2 class="board-title">2024/2025 EXECUTIVE BOARD</h2>
         </div>
     </div>
+</div>
+
+        </div>
+       
+
+            
+        </div>
+    
 </section>
 <footer class="main-footer">
     <div class="footer-container">
@@ -426,6 +666,32 @@
        
     } 
 };
+
+
+function openboard() {
+    const overlay = document.getElementById('boardOverlay');
+    overlay.style.display = 'block'; // Changed to block for overflow-y support
+    document.body.style.overflow = 'hidden'; // Stop the main page from scrolling
+}
+
+function closeBoard() {
+    const overlay = document.getElementById('boardOverlay');
+    overlay.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Let the main page scroll again
+}
+
+// Close when clicking the background (the scroll area)
+document.getElementById('boardOverlay').addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-scroll-area')) {
+        closeBoard();
+    }
+});
+
+
+
+
+
+
 
 // Run on load and resize
 window.addEventListener('resize', applySection3MobileFixes);
