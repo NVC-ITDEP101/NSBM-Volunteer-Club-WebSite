@@ -27,7 +27,7 @@ window.addEventListener('load', () => {
             document.body.classList.remove('stop');
         }, 1000); 
 
-    }, 6000); // Keeps the effect visible for 6 seconds
+    }, 4000); // Keeps the effect visible for 6 seconds
 });
 
 
