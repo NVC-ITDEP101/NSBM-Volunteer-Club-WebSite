@@ -30,6 +30,7 @@ html {
     body{
         background: url(img/nsbm\ android\ 1.png)  no-repeat center center fixed ;
         background-size: cover;
+        background-attachment: fixed;
     }
     main-content {
    background: transparent;
