@@ -1,0 +1,488 @@
+<html>
+<head>
+  <title>Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/x-icon" href="img/tablogoo.png">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:600,900" rel="stylesheet">
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Jura&family=Oxanium:wght@200..800&family=Smooch+Sans:wght@100..900&family=Stick+No+Bills:wght@200..800&family=Wallpoet&display=swap');
+        
+
+        
+            body {
+                line-height: 1.6;
+                color: #fff;
+                  background:  url(img/Image2.png)  no-repeat center center fixed ;
+                background-size: cover;
+                margin: 0;
+                font-family: "Oxanium", sans-serif;
+    
+    
+                font-size: 18px;
+                font-weight: 400;
+                
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                
+                &.stop {
+                    overflow: hidden;
+                }
+            }
+             
+            .section1{
+                background: black;
+            }
+            header{
+                background-color: black;
+            }
+
+            nav {
+                display: flex;
+                height: 80px;
+                justify-content: center;
+                align-items: center;
+                padding: 0 20px;
+                position: fixed;
+                left: 0;
+                right: 0;
+                width: 100%;
+                margin: 0 auto;
+                top: 0;
+                background-color: rgba(0, 0, 0, 0.6);
+                z-index: 9;
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255,255,255,.06);
+                transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1) .2s;
+
+            
+            }
+             .logo1{
+                position: absolute;
+                left: 18px;
+                
+                width: 210px;
+                height: 80px;
+            }
+            a{
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 15px 20px;
+                line-height: 1;
+                font-size: 13px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                
+
+            }
+            a:hover {
+                    border-bottom: 2px solid white;
+                    color: rgb(171, 171, 171);
+            }
+                        
+            
+            header {
+                z-index: 99999;
+                position: relative;
+            }
+            .trapezium-bg{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 50%;
+                height: 100%;
+                background: radial-gradient( rgb(0, 56, 75), rgb(0, 0, 0) ); /* Club Primary Color */
+                clip-path: polygon(0 0, 100% 0, 0% 100%, 0% 100%);
+                z-index: -1;
+            }
+            .trapezium-top-right {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 40%;
+                height: 300px;
+                background: radial-gradient(black, rgb(0, 70, 53)); /* Subtle light grey */
+                clip-path: polygon(100% 0, 100% 100%, 0 0);
+                z-index: 1;
+                opacity: 0;
+                transform: translateY(-50px);
+                transition: 1s ease;
+            }
+
+
+            @media (max-width: 768px) {
+                 
+                body {
+                    /* Replace 'img/mobile-bg.jpg' with your new image path */
+                    background-image: url('img/nsbm\ android\ 1.png') !important;
+                            
+                   
+                }
+                
+                    main-content {
+                background: transparent;
+                }
+                nav{
+                    height: 50px;
+                }
+                .logo1{
+                    width: 68px;
+                    height: 35px;
+                    left: 0;
+                }
+            }
+               
+            
+
+
+
+            /* Gallery Grid */
+            .gallery-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-auto-rows: 200px;
+                grid-auto-flow: dense; /* Fills gaps automatically */
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .gallery-item {
+                position: relative;
+                overflow: hidden;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.1);
+            }
+
+            /* Horizontal & Vertical Spanning */
+            .wide { grid-column: span 2; }
+            .tall { grid-row: span 2; }
+
+            /* Lightbox Styling */
+            .lightbox {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                justify-content: center;
+                align-items: center;
+            }
+
+            .lightbox img {
+                max-width: 90%;
+                max-height: 80%;
+                border-radius: 5px;
+                box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 30px;
+                right: 40px;
+                font-size: 50px;
+                color: white;
+                cursor: pointer;
+            }
+
+            /* Mobile Responsive Adjustments */
+            @media (max-width: 768px) {
+                .gallery-container {
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                    grid-auto-rows: 150px;
+                }
+                .wide { grid-column: span 1; } /* Reset wide images on small screens */
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /* Footer Styling */
+            .main-footer {
+                background:linear-gradient(black , rgb(32, 32, 32), black );
+                color: #ffffff;
+                padding: 60px 10% 20px 10%;
+                margin-top: 50px;
+            }
+
+            .footer-container {
+                display: flex;
+                justify-content: space-between;
+                gap: 40px;
+                flex-wrap: wrap;
+            }
+
+            .footer-col {
+                flex: 1;
+                min-width: 150px;
+            }
+
+            .footer-col h3 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                color: #ffffff; /* Accent color */
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .footer-col p {
+                color: #b3b3b3;
+                line-height: 1.8;
+                font-size: 0.95rem;
+            }
+
+            .footer-links {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-links li {
+                margin-bottom: 12px;
+            }
+
+            .footer-links a {
+                color: #b3b3b3;
+                text-decoration: none;
+                transition: 0.3s;
+                font-size: 0.95rem;
+                padding: 0; /* Removing padding from previous 'a' styles */
+                display: inline;
+            }
+
+            .footer-links a:hover {
+                color: #ffffff;
+                border-bottom: 1px solid #ffffff;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .footer-bottom p {
+                font-size: 0.8rem;
+                color: #777;
+            }
+            .f-links{
+                margin: 3px;
+            }
+            /* Responsive Footer */
+            @media (max-width: 768px) {
+                .footer-container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .footer-col {
+                    margin-bottom: 30px;
+                }
+
+                .footer-col h3 {
+                font-size: 20px;
+                margin-bottom: 20px;
+                }
+                .footer-links a {
+                    font-size: 1opx;
+                }
+               
+            }
+            h3{
+                color: #ffffff;
+            }
+  </style>
+</head>
+<body>
+
+  <section class="section1">
+        <header>
+           
+             <nav  style="font-family: Wallpoet, sans-serif;">
+               <a href="index.html">home</a>
+                <a href="Gallery.html">gallery</a>
+                <a href="About.html">about</a>
+                <img src="img/NVClogo.png" class="logo1">     
+            </nav>
+  </section>   
+  <div class="trapezium-bg"></div>   
+  <br>
+  <br>
+  <br>
+  <br>    
+  
+  
+    
+
+
+
+    <div class="gallery-container">
+    
+      
+       
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeFullView()">
+        <span class="close-btn">&times;</span>
+        <img id="fullImage" src="" alt="Full View">
+</div>
+
+<div class="trapezium-bg-right"></div>
+
+
+
+
+
+
+
+
+   <footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>NSBM Volunteer Club</h3>
+            <p>Empowering the youth to serve the community through dedication, passion, and selfless action. Join us in making the world a better place, one project at a time.</p>
+            <div class="footer-logo">
+                </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="About.html">About</a></li>
+                
+            </ul>
+           
+        </div>
+        <div class="footer-col">
+            <h3>Follow Us</h3>
+            <ul class="footer-links">
+                
+                <a class="f-links" href="https://www.instagram.com/nsbm_volunteer_club/"><img style="width: 30px;" src="instagram_174855.png" alt="Instagram"></a>
+                <a class="f-links" href="https://www.tiktok.com/@nsbm_volunteer_club?_r=1&_t=ZS-97HyolGgFMd"><img style="width: 30px;" src="tik-tok_3046121.png" alt="TikTok"></a>
+                <a class="f-links" href="https://www.linkedin.com/company/nsbm-volunteer-club/posts/?feedView=all"><img style="width: 30px;" src="connection_15047316.png" alt="LinkedIn"></a>
+                <a class="f-links" href="https://www.facebook.com/p/Student-Volunteer-Association-NSBM-100086685550610/"><img style="width: 30px;" src="facebook.png" alt="Facebook"></a>
+                
+               
+            </ul>
+        </div>
+
+         <div class="footer-col">
+            <h3>Contact Us</h3>
+            <ul class="footer-links">
+                    
+                     <li><img src="icons8-mail-48.png"  style="width: 20px;"><h5 style="  color: #b3b3b3;"> info@nsbmvolunteersclub.org </h5></li>
+                    <li><img src="icons8-location-40.png" style="width: 20px;" alt=""><h5 style=" color: #b3b3b3;">NSBM Volunteer Club,
+                        2nd Floor Student Center,
+                        NSBM Green University,
+                        Pitipana, Homagama,
+                        Sri Lanka.</h5> </li>
+                
+                </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 NSBM Volunteer Club. All Rights Reserved.</p>
+        
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+ // Initialize Supabase
+const { createClient } = supabase;
+const _supabase = createClient('https://lgbgobzasuqozdkvxifk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnYmdvYnphc3Vxb3pka3Z4aWZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0ODg3OTcsImV4cCI6MjA4NDA2NDc5N30.a64sYwLUfGd1qNqg9Vfon_DqvrntkMiB1v-l6tPoITM');
+
+async function fetchGallery() {
+    const { data, error } = await _supabase
+        .from('gallery_items')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) return console.error('Error:', error);
+
+    const container = document.querySelector('.gallery-container');
+    container.innerHTML = ''; // Clear hardcoded images
+
+    data.forEach((item, index) => {
+        const div = document.createElement('div');
+        let classes = ['gallery-item'];
+        
+        // Keep your original mosaic styling logic
+        if (index % 3 === 0) classes.push('wide');
+        if (index % 5 === 0) classes.push('tall');
+        
+        div.className = classes.join(' ');
+        div.onclick = () => openFullView(div);
+        div.innerHTML = `<img src="${item.image_url}" alt="Gallery Image">`;
+        container.appendChild(div);
+    });
+}
+
+// Lightbox logic
+function openFullView(element) {
+    const lightbox = document.getElementById('lightbox');
+    const fullImg = document.getElementById('fullImage');
+    const clickedImgSrc = element.querySelector('img').src;
+    fullImg.src = clickedImgSrc;
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeFullView() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Mobile footer fixes
+const applyGalleryFooterMobileFixes = () => {
+    if (window.innerWidth <= 768) {
+        const footerContainer = document.querySelector('.footer-container');
+        if (footerContainer) {
+            footerContainer.style.display = 'flex';
+            footerContainer.style.flexDirection = 'column';
+            footerContainer.style.alignItems = 'center';
+            footerContainer.style.textAlign = 'center';
+        }
+    }
+};
+
+window.addEventListener('resize', applyGalleryFooterMobileFixes);
+window.onload = () => {
+    applyGalleryFooterMobileFixes();
+    fetchGallery(); // Load images from database on startup
+};
+</script>
+</body>
+</html>

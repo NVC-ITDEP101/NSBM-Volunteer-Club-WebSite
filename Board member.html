@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Member </title>
+     <link rel="icon" type="image/x-icon" href="img/tablogoo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jura&family=Oxanium:wght@200..800&family=Smooch+Sans:wght@100..900&family=Stick+No+Bills:wght@200..800&family=Wallpoet&display=swap');
+        /* 1. Global Page Styles */
+        body {
+            margin: 0;
+            font-family: "Oxanium", sans-serif;
+            background-color: rgb(15, 15, 15);
+            background-image: radial-gradient(circle at top right, #003a44, transparent),
+                              radial-gradient(circle at bottom left, #000, transparent);
+            background:  url(img/Image2.png)  no-repeat center center fixed ;
+            background-size: cover;
+            color: #eee;
+            padding: 80px 20px;
+        }
+
+        /* Container with Gradient Background */
+        .hero-section {
+           margin: 50px;
+            display: flex;
+            align-items:center;
+            justify-content:center;
+            margin: 50px auto;
+            height: 200px;
+            padding: 0 ;
+            position: relative;
+        }
+
+        .content-wrapper {
+            max-width: 2100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* --- THE TEXT SECTION --- */
+        .text-box {
+            z-index: 2;
+            background-color: rgba(1, 3, 40, 0.088);
+           
+            opacity: 0.9;
+            padding:20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-left: 5px solid rgba(255, 255, 255, 0.366);
+            width: 70%;
+            /* Entrance Animation for Text Box */
+            animation: slideInRight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        .text-box h2 {
+            font-size: 50px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #f2f2f2;
+            margin: 10px 20px 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .text-box .eyebrow {
+            display: block;
+            font-family: "Stick No Bills", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #d4d8dc;
+            margin: 0 20px;
+        }
+
+        .text-box .title-underline {
+            width: 70px;
+            height: 3px;
+            margin: 0 auto 6px;
+            background: linear-gradient(90deg, #e8eaed, transparent);
+            border-radius: 2px;
+        }
+
+        .text-box p {
+            
+            color: #cacaca;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+       
+
+        /* Text box slides in from the right */
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(150px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Image slides UP from below the "overflow:hidden" container */
+        @keyframes slideUpReveal {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+       
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            .text-box {
+                width: 100%;
+                padding: 30px;
+                margin: 70px;
+                
+            }
+            .image-container {
+                width: 90%;
+                height: 300px;
+                top: 50px;
+                right: 5%;
+            }
+            .text-box h2 {
+                font-size: 30px;
+                font-weight: 700;
+                margin: 8px 0 14px;
+            }
+            .text-box .eyebrow {
+                font-size: 11px;
+                letter-spacing: 4px;
+                margin: 0;
+            }
+            .text-box p {
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 3660px) {
+            .text-box h2 {
+                font-size: 100px;
+            }
+            .content-wrapper{
+                width: 100vh;
+            }
+            .text-box {
+                width: 780vh;
+                height: 300px;
+               
+            }
+        }
+       
+  
+
+
+
+
+
+
+
+
+
+        /* 2. Responsive Grid System (3 columns desktop, 1 column mobile) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 950px;
+            margin: 0 auto ;
+        }
+
+        /* 3. The Glassmorphism Card */
+        .member-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            width: 260px;
+            text-align: center;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.12, 1.275);
+        }
+
+        /* 4. Pop-up Animation on Hover */
+        .member-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            border-color: rgba(0, 14, 17, 0.456);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 5. Shining Light Effect */
+        .member-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: skewX(-25deg);
+            transition: 0.7s;
+        }
+
+        .member-card:hover::before {
+            left: 150%;
+        }
+
+        /* 6. Card Internal Styling */
+        .member-img {
+            width: 80%;
+            height: 310px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 5px 0;
+            color: #fff;
+        }
+
+        .member-position {
+            font-size: 0.75rem;
+            color: #00b6da;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* 7. Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 650px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 40px;
+                
+            align-items: center;}
+            .member-card {
+               align-items: center;
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+        @media (max-width: 768px) {
+             body {
+                    /* Replace 'img/mobile-bg.jpg' with your new image path */
+                    background-image: url('img/nsbm\ android\ 1.png') !important;
+                            
+                   
+                }
+    .member-card:has(.member-position:contains("President")) {
+        order: 1;
+    }
+}
+    </style>
+</head>
+<body>
+     <section class="hero-section">
+        <div class="content-wrapper">
+            
+            <article class="text-box">
+                
+                <span class="eyebrow">Our Leadership</span>
+                <h2>Board Members</h2>
+                <div class="title-underline"></div>
+                <p>
+                   WORK FOR A CAUSE. NOT FOR APPLAUSE
+                </p>
+                
+            </article>
+
+            
+
+        </div>
+    </section>
+    <br><br><br>
+    
+    <div class="gallery-grid" id="memberGrid"></div>
+
+    
+
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // Initialize Supabase Client
+    const SUB_URL = "https://lgbgobzasuqozdkvxifk.supabase.co";
+    const SUB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnYmdvYnphc3Vxb3pka3Z4aWZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0ODg3OTcsImV4cCI6MjA4NDA2NDc5N30.a64sYwLUfGd1qNqg9Vfon_DqvrntkMiB1v-l6tPoITM";
+    const supabaseClient = supabase.createClient(SUB_URL, SUB_KEY);
+
+    async function displayMembers() {
+        const grid = document.getElementById('memberGrid');
+        
+        // Fetch members from database
+        const { data: members, error } = await supabaseClient
+            .from('members')
+            .select('*')
+            .order('id', { ascending: true });
+
+        if (error) {
+            console.error("Fetch error:", error.message);
+            return;
+        }
+
+        grid.innerHTML = ''; 
+
+        members.forEach((member, index) => {
+            const card = document.createElement('div');
+            card.className = 'member-card';
+            
+            const imgUrl = member.image_url || 'https://via.placeholder.com/260x310?text=No+Photo';
+
+            // High priority loading for first visible row, lazy loading for off-screen
+            const priorityAttr = index < 6 ? 'fetchpriority="high"' : 'loading="lazy"';
+
+            card.innerHTML = `
+                <img src="${imgUrl}" 
+                     class="member-img" 
+                     alt="${member.name}" 
+                     decoding="async" 
+                     ${priorityAttr}
+                     onerror="this.src='https://via.placeholder.com/260x310?text=Image+Error'">
+                <div class="member-name">${member.name}</div>
+                <div class="member-position">${member.position}</div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // Run automatically when DOM is ready
+    document.addEventListener('DOMContentLoaded', displayMembers);
+</script>
+</body>
+</html>
