@@ -1124,7 +1124,7 @@ html {
     }
 }
             /* Modal Background */
-            .modal {
+           .modal {
                 display: none; 
                 position: fixed; 
                 z-index: 10000; 
@@ -1134,20 +1134,24 @@ html {
                 height: 100%; 
                 background-color: rgba(0,0,0,0.8); 
                 backdrop-filter: blur(8px);
-               
+
+                /* CSS Scrolling Property */
+                overflow-y: auto;     /* Enables vertical scrolling for long content inside overlay */
             }
 
-            /* Modal Box */
-            .modal-content {
+           .modal-content {
                 background-color: #fff;
                 margin: 5% auto; 
                 width: 80%; 
                 max-width: 800px;
                 border-radius: 15px;
                 font-size: 20px;
-                overflow: hidden;
                 position: relative;
                 animation: zoomIn 0.3s ease;
+
+                /* CSS Scrolling Properties */
+                max-height: 95vh;     /* Limits modal height to 80% of the screen */
+                overflow-y: auto;     /* Enables vertical scrollbar when content exceeds max-height */
             }
 
             @keyframes zoomIn {
